@@ -23,8 +23,8 @@ public class SnowBlock : MonoBehaviour
         if(collision.gameObject.CompareTag("Ground"))
         {
             transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
-            Debug.Log("touch");
             transform.localRotation = Quaternion.identity;
+            tag = "Snow";
         }
         
     }

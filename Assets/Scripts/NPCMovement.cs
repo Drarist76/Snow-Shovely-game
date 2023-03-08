@@ -9,6 +9,8 @@ public class NPCMovement : MonoBehaviour
     float speed;
     float timeCount = 3;
     Vector3 location;
+    public SnowHit npcHit;
+    public Transform player;
 
 
     // Start is called before the first frame update
@@ -20,13 +22,20 @@ public class NPCMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (doneMovement == false)
+        if (npcHit.hit == true)
         {
-            MoveToLocation();
-        }else if(timeCount>=3)
+            Running();
+        }else
         {
-            timeCount = 0;
-            FindLocation();
+            if (doneMovement == false)
+            {
+                MoveToLocation();
+            }
+            else if (timeCount >= 3)
+            {
+                timeCount = 0;
+                FindLocation();
+            }
         }
 
         timeCount = timeCount + Time.deltaTime;
@@ -51,6 +60,16 @@ public class NPCMovement : MonoBehaviour
 
     void Rotation()
     {
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(location), timeCount);
+        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(new Vector3(location.x, 0, location.z)), timeCount);
+    }
+
+    void Running()
+    {
+        location = transform.position - player.position;
+        location.y = player.position.y;
+        if (npcHit.angerTime <= 5)
+        {
+            MoveToLocation();
+        }
     }
 }
