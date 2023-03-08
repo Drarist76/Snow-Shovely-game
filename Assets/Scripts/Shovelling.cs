@@ -122,6 +122,7 @@ public class Shovelling : MonoBehaviour
         assignedSnow.transform.position = assignedPos.position;
         assignedSnow.GetComponent<Rigidbody>().isKinematic = true;
         assignedSnow.GetComponent<BoxCollider>().enabled = false;
+        assignedSnow.GetComponent<SnowBlock>().onGround = false;
     }
 
     public void snowThrow(GameObject throwingSnow)
