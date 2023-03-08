@@ -5,7 +5,7 @@ using UnityEngine;
 public class SnowBlock : MonoBehaviour
 {
     public float size = 0.25f;
-    public float height = 0.25f;
+    public float heightIncriment = 0.0625f;
     public bool onGround = false;
 
     void Start()
@@ -26,6 +26,7 @@ public class SnowBlock : MonoBehaviour
             transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
             transform.localRotation = Quaternion.identity;
             onGround= true;
+            GetComponent<Rigidbody>().isKinematic= true;
             gameObject.tag = "Snow";
         }
 
@@ -33,9 +34,8 @@ public class SnowBlock : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Snow Throw"))
             {
-                transform.position += new Vector3(0, 0.0625f, 0);
-                height += 0.0625f;
-                UpdateHeight();
+                Resize(heightIncriment, new Vector3(0, 1, 0));
+                //UpdateHeight();
                 Destroy(collision.gameObject);
             }
         }
@@ -50,8 +50,9 @@ public class SnowBlock : MonoBehaviour
         return pos;
     }
 
-    private void UpdateHeight()
+    public void Resize(float amount, Vector3 direction)
     {
-        transform.localScale = new Vector3(transform.localScale.x, height, transform.localScale.z);
+        transform.position += direction * amount / 2; // Move the object in the direction of scaling, so that the corner on ther side stays in place
+        transform.localScale += direction * amount; // Scale object in the specified direction
     }
 }
