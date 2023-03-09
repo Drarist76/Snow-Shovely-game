@@ -10,7 +10,8 @@ public class ShovellingV2 : MonoBehaviour
     public GameObject snowBlockGrabbed;
     //public Transform Holding1, Holding2, Holding3;
     public Transform[] holdingPosition;
-
+    [SerializeField] private GameObject SnowGroup;
+    [SerializeField] private GameObject ShoveledSnowParent;
     bool mousePressed, mouseReleased;
 
     // Start is called before the first frame update

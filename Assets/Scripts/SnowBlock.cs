@@ -6,6 +6,7 @@ public class SnowBlock : MonoBehaviour
 {
     public float size = 0.25f;
     public float heightIncriment = 0.0625f;
+    public int heightLevel = 1;
     public bool onGround = false;
 
     void Start()
@@ -34,7 +35,9 @@ public class SnowBlock : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Snow Throw"))
             {
-                Resize(heightIncriment, new Vector3(0, 1, 0));
+
+                Resize(collision.gameObject.GetComponent<SnowBlock>().heightLevel * heightIncriment, new Vector3(0, 1, 0));
+                heightLevel += collision.gameObject.GetComponent<SnowBlock>().heightLevel;
                 //UpdateHeight();
                 Destroy(collision.gameObject);
             }
