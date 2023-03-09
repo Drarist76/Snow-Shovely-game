@@ -5,7 +5,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public CharacterController controller;
-    public SlowPlayerDown playerFeet;
 
     public float speed = 12f;
     public float gravity = -9.81f;
@@ -21,9 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     void Start()
     {
-
         controller = GetComponent<CharacterController>();
-
     }
 
     void Update()
@@ -43,7 +40,7 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 move = transform.right * x + transform.forward * z;
 
-        controller.Move(move * speed * playerFeet.GetComponent<SlowPlayerDown>().slowMultipliyer * Time.deltaTime);
+        controller.Move(move * speed * Time.deltaTime);
 
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
@@ -54,12 +51,10 @@ public class PlayerMovement : MonoBehaviour
             walkingSounds.clip = WalkingOnSnow;
             walkingSounds.Play();
         }
-        else if (walkingSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
-        {
-           walkingSounds.Pause();
-        }
+          else if (walkingSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
+            {
+                walkingSounds.Pause();
+            } 
 
     }
-
-
 }

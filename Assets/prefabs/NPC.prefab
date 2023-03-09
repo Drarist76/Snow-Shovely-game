@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 275127834475581667}
   - component: {fileID: 275127834475581666}
   - component: {fileID: 275127834475581672}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: NPC
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -112,8 +112,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a05ac74eeec84cbb07ce45997af73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  npcHit: {fileID: 0}
+  npcHit: {fileID: 275127834475581672}
   player: {fileID: 0}
+  mask:
+    serializedVersion: 2
+    m_Bits: 0
+  hitColliders: []
 --- !u!54 &275127834475581666
 Rigidbody:
   m_ObjectHideFlags: 0

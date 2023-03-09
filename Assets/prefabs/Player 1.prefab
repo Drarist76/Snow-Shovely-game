@@ -371,7 +371,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   controller: {fileID: 1063261103686298483}
-  playerFeet: {fileID: 6355413484973687096}
   speed: 1.5
   gravity: -9.81
   WalkingOnSnow: {fileID: 8300000, guid: cb4bf35eeda4a4c4cb380071dd104514, type: 3}
