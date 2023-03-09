@@ -25,14 +25,26 @@ public class ShovellingV2 : MonoBehaviour
 
     bool mousePressed, mouseReleased;
 
+
     public GameObject snowPrefab;
+
+    public AudioClip shovelDownSound;
+    public AudioClip shovelUpSound;
+    public AudioSource shovelSounds;
+    public AudioSource shovelSounds2;
+
 
     // Start is called before the first frame update
     void Awake()
     {
+
         snowsHeld= new GameObject[capacity];
         player = GetComponent<Transform>();
         offset = new Vector3(1f, 1f, 1f);
+     //   shovelDownSound = GetComponent<AudioSource>();
+        snowsHeld = new GameObject[capacity];
+        shovelSounds.clip = shovelDownSound;
+        shovelSounds2.clip = shovelUpSound;
     }
 
     // Update is called once per frame
@@ -43,22 +55,37 @@ public class ShovellingV2 : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mousePressed = true;
+
+           
+         
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             mousePressed = false;
             mouseReleased = true;
+            shovelSounds.Stop();
+            shovelSounds2.Play();
         }
 
         if (mousePressed == true)
         {
             PickUp(snowsHeld, holdingPosition);
+
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && shovelSounds.isPlaying == false)
+            {
+                shovelSounds.Play();
+            }
+            else if (shovelSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
+            {
+                shovelSounds.Pause();
+            }
         }
 
         if (mouseReleased == true)
-        {   
-            mouseReleased= false;
+        {
+
+            mouseReleased = false;
             for (int i = 0; i < capacity; i++)
             {
                 Throw(snowsHeld);

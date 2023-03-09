@@ -8,7 +8,9 @@ public class SnowHit : MonoBehaviour
     public float angerTime = 0;
     public Transform snowPos;
     Color32 originalColor;
-    
+    public AudioClip enemyHit;
+
+    public AudioSource hitSounds;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +32,13 @@ public class SnowHit : MonoBehaviour
     {
         if (collision.gameObject.tag == "Snow Throw"){
             hit = true;
+        }
+
+        if (collision.gameObject.CompareTag("Snow"))
+        {
             snowPos = collision.gameObject.transform;
+            hitSounds.clip = enemyHit;
+            hitSounds.Play();
         }
     }
 
