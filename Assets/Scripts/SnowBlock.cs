@@ -45,7 +45,6 @@ public class SnowBlock : MonoBehaviour
     private float SnapBlocks(float pos)
     {
         float difference = pos % size;
-        Debug.Log(difference);
         pos -= difference;
         return pos;
     }
