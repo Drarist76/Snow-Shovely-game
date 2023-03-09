@@ -4,11 +4,22 @@ using UnityEngine;
 
 public class SnowBlock : MonoBehaviour
 {
-    public float size = 0.25f;
+    public float size = 0.125f;
     public float heightIncriment = 0.0625f;
     public int heightLevel = 1;
     public bool onGround = false;
 
+    private void OnValidate()
+    {
+        if(transform.parent != null)
+        {
+            float parentY = transform.parent.position.y;
+            transform.localScale = new Vector3(transform.localScale.x, size +
+                ((heightLevel - 1) * heightIncriment), transform.localScale.z);
+            transform.position = new Vector3(transform.position.x, parentY + (heightLevel - 1) * heightIncriment / 2, transform.position.z);
+        }
+        
+    }
     void Start()
     {
        //transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
