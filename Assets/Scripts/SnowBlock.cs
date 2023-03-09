@@ -48,11 +48,14 @@ public class SnowBlock : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Snow Throw"))
             {
+                if(heightLevel < 8)
+                {
+                    Resize(collision.gameObject.GetComponent<SnowBlock>().heightLevel);
+                    heightLevel += collision.gameObject.GetComponent<SnowBlock>().heightLevel;
+                    //UpdateHeight();
+                    Destroy(collision.gameObject);
+                }
 
-                Resize(collision.gameObject.GetComponent<SnowBlock>().heightLevel * heightIncriment, new Vector3(0, 1, 0));
-                heightLevel += collision.gameObject.GetComponent<SnowBlock>().heightLevel;
-                //UpdateHeight();
-                Destroy(collision.gameObject);
             }
         }
         
@@ -65,9 +68,11 @@ public class SnowBlock : MonoBehaviour
         return pos;
     }
 
-    public void Resize(float amount, Vector3 direction)
+    public void Resize(int amount)
     {
-        transform.position += direction * amount / 2; // Move the object in the direction of scaling, so that the corner on ther side stays in place
-        transform.localScale += direction * amount; // Scale object in the specified direction
+        Vector3 direction = new Vector3(0, 1, 0);
+        transform.position += direction * amount * heightIncriment / 2; // Move the object in the direction of scaling, so that the corner on ther side stays in place
+        transform.localScale += direction * amount * heightIncriment; // Scale object in the specified direction
+        heightLevel += amount;
     }
 }
