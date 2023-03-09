@@ -9,11 +9,11 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6775410969707116419}
-  - component: {fileID: 1703343365065414071}
   - component: {fileID: 6775410969707116418}
   - component: {fileID: 6775410969707116421}
   - component: {fileID: 6775410969707116420}
   - component: {fileID: 6775410969707116423}
+  - component: {fileID: 1703343365065414071}
   m_Layer: 7
   m_Name: snow
   m_TagString: Snow Throw
@@ -36,22 +36,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1703343365065414071
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6775410969707116422}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8940176ad3d3bb44c897e4be63d31301, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  size: 0.125
-  heightIncriment: 0.0625
-  heightLevel: 1
-  onGround: 0
 --- !u!33 &6775410969707116418
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -131,3 +115,19 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!114 &1703343365065414071
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6775410969707116422}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8940176ad3d3bb44c897e4be63d31301, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  size: 0.125
+  heightIncriment: 0.0625
+  heightLevel: 1
+  onGround: 0
