@@ -40,7 +40,6 @@ public class Shovelling : MonoBehaviour
             snowHeld2 = null;
             snowHeld3 = null;
         }
-
     }
 
     void OnTriggerEnter(Collider col){
@@ -123,6 +122,7 @@ public class Shovelling : MonoBehaviour
         assignedSnow.transform.position = assignedPos.position;
         assignedSnow.GetComponent<Rigidbody>().isKinematic = true;
         assignedSnow.GetComponent<BoxCollider>().enabled = false;
+        assignedSnow.GetComponent<SnowBlock>().onGround = false;
     }
 
     public void snowThrow(GameObject throwingSnow)
@@ -131,7 +131,6 @@ public class Shovelling : MonoBehaviour
         throwingSnow.GetComponent<Rigidbody>().isKinematic = false;
         throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * 3;
         throwingSnow.GetComponent<BoxCollider>().enabled = true;
-
+        throwingSnow.tag = "Snow Throw";
     }
-
 }

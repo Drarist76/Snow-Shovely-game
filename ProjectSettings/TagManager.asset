@@ -5,6 +5,8 @@ TagManager:
   serializedVersion: 2
   tags:
   - Snow
+  - Ground
+  - Snow Throw
   layers:
   - Default
   - TransparentFX
@@ -16,7 +18,7 @@ TagManager:
   - Snow
   - SnowGround
   - Shovel
-  - 
+  - NPC
   - 
   - 
   - 
