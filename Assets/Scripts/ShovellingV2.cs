@@ -5,6 +5,9 @@ using UnityEngine;
 public class ShovellingV2 : MonoBehaviour
 {
     public int capacity = 3;
+
+    [Range(3f,8f)]
+    public float throwPower = 5f;
     //public GameObject snowHeld, snowHeld1, snowHeld2, snowHeld3;
     public GameObject[] snowsHeld;
     public GameObject snowBlockGrabbed;
@@ -120,7 +123,7 @@ public class ShovellingV2 : MonoBehaviour
     {
         throwingSnow.GetComponent<Rigidbody>().useGravity = true;
         throwingSnow.GetComponent<Rigidbody>().isKinematic = false;
-        throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * 3;
+        throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * throwPower;
         throwingSnow.GetComponent<BoxCollider>().enabled = true;
         throwingSnow.tag = "Snow Throw";
     }
