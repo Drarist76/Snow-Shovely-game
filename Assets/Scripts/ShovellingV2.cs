@@ -17,10 +17,16 @@ public class ShovellingV2 : MonoBehaviour
     [SerializeField] private GameObject ShoveledSnowParent;
     bool mousePressed, mouseReleased;
 
+    public AudioClip shovelDownSound;
+    public AudioClip shovelUpSound;
+    public AudioSource shovelSounds;
+    public AudioSource shovelSounds2;
+
     // Start is called before the first frame update
     void Awake()
     {
-        snowsHeld= new GameObject[capacity];
+     //   shovelDownSound = GetComponent<AudioSource>();
+        snowsHeld = new GameObject[capacity];
     }
 
     // Update is called once per frame
@@ -29,12 +35,18 @@ public class ShovellingV2 : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mousePressed = true;
+           //&& if the player is walking ---    
+            shovelSounds.clip = shovelDownSound;
+            shovelSounds.Play();
         }
 
         if (Input.GetMouseButtonUp(0))
         {
             mousePressed = false;
             mouseReleased = true;
+            shovelSounds.Stop();
+            shovelSounds2.clip = shovelUpSound;
+            shovelSounds2.Play();
         }
 
         if (mousePressed == true)
@@ -43,8 +55,9 @@ public class ShovellingV2 : MonoBehaviour
         }
 
         if (mouseReleased == true)
-        {   
-            mouseReleased= false;
+        {
+
+            mouseReleased = false;
             for (int i = 0; i < capacity; i++)
             {
                 Throw(snowsHeld);

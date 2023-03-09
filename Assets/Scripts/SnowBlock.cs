@@ -6,8 +6,6 @@ public class SnowBlock : MonoBehaviour
 {
     public float size = 0.125f;
     public float heightIncriment = 0.0625f;
-
-    [Range(1,10)]
     public int heightLevel = 1;
     public bool onGround = false;
 
@@ -35,7 +33,7 @@ public class SnowBlock : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.CompareTag("Ground"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
             transform.localRotation = Quaternion.identity;
