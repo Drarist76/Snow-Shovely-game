@@ -11,12 +11,14 @@ public class NPCMovement : MonoBehaviour
     Vector3 location;
     public SnowHit npcHit;
     public Transform player;
+    [SerializeField] LayerMask mask;
+    public Collider[] hitColliders;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.2f * Time.deltaTime;
+        speed = 0.4f * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -51,6 +53,7 @@ public class NPCMovement : MonoBehaviour
     {
         transform.position = Vector3.MoveTowards(transform.position, location, speed);
         Rotation();
+        AvoidSnow();
 
         if (Vector3.Distance(transform.position, location)<0.5f)
         {
@@ -66,10 +69,18 @@ public class NPCMovement : MonoBehaviour
     void Running()
     {
         location = transform.position - player.position;
-        location.y = player.position.y;
+        location.y = 0.17f;
         if (npcHit.angerTime <= 5)
         {
             MoveToLocation();
+        }
+    }
+
+    void AvoidSnow()
+    {
+        if(Physics.Raycast(new Vector3(transform.position.x, 0, transform.position.y), Vector3.forward, 2f, mask))
+        {
+            FindLocation();
         }
     }
 }

@@ -4,40 +4,60 @@ using UnityEngine;
 
 public class ShovellingV2 : MonoBehaviour
 {
+    [Header("Shovel Settings")]
     public int capacity = 3;
-
     [Range(3f,8f)]
     public float throwPower = 5f;
-    //public GameObject snowHeld, snowHeld1, snowHeld2, snowHeld3;
-    public GameObject[] snowsHeld;
+    private Vector3 offset;
+
+    [Header("Arrays")]
     public GameObject snowBlockGrabbed;
-    //public Transform Holding1, Holding2, Holding3;
+    public GameObject[] snowsHeld;
     public Transform[] holdingPosition;
+
+    [Header("Containers/Parents")]
     [SerializeField] private GameObject SnowGroup;
     [SerializeField] private GameObject ShoveledSnowParent;
+
+    [Header("Follow")]
+    public Transform player;
+    public Transform cam;
+
     bool mousePressed, mouseReleased;
+
+
+    public GameObject snowPrefab;
 
     public AudioClip shovelDownSound;
     public AudioClip shovelUpSound;
     public AudioSource shovelSounds;
     public AudioSource shovelSounds2;
 
+
     // Start is called before the first frame update
     void Awake()
     {
+
+        snowsHeld= new GameObject[capacity];
+        player = GetComponent<Transform>();
+        offset = new Vector3(1f, 1f, 1f);
      //   shovelDownSound = GetComponent<AudioSource>();
         snowsHeld = new GameObject[capacity];
+        shovelSounds.clip = shovelDownSound;
+        shovelSounds2.clip = shovelUpSound;
     }
 
     // Update is called once per frame
     void Update()
     {
+        transform.localRotation = Quaternion.Euler(cam.GetComponent<Transform>().localRotation.x * Mathf.Rad2Deg - 30f,0,0);
+
         if (Input.GetMouseButtonDown(0))
         {
             mousePressed = true;
-           //&& if the player is walking ---    
-            shovelSounds.clip = shovelDownSound;
-            shovelSounds.Play();
+
+           
+         
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -45,13 +65,21 @@ public class ShovellingV2 : MonoBehaviour
             mousePressed = false;
             mouseReleased = true;
             shovelSounds.Stop();
-            shovelSounds2.clip = shovelUpSound;
             shovelSounds2.Play();
         }
 
         if (mousePressed == true)
         {
             PickUp(snowsHeld, holdingPosition);
+
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && shovelSounds.isPlaying == false)
+            {
+                shovelSounds.Play();
+            }
+            else if (shovelSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
+            {
+                shovelSounds.Pause();
+            }
         }
 
         if (mouseReleased == true)
@@ -62,9 +90,10 @@ public class ShovellingV2 : MonoBehaviour
             {
                 Throw(snowsHeld);
                 snowsHeld[i] = null;
-                Debug.Log("test");
             }
         }
+
+
     }
 
     void OnTriggerEnter(Collider col)
@@ -78,8 +107,18 @@ public class ShovellingV2 : MonoBehaviour
                 {
                     if (snowsHeld[i] == null)
                     {
-                        snowsHeld[i] = snowBlockGrabbed.transform.gameObject;
-                        break;
+                        if(snowBlockGrabbed.GetComponent<SnowBlock>().heightLevel <= 5)
+                        {
+                            snowsHeld[i] = snowBlockGrabbed.transform.gameObject;
+                            break;
+                        }
+                        else
+                        {
+                            snowsHeld[i] = Instantiate(snowPrefab, transform.position, Quaternion.identity);
+                            snowsHeld[i].GetComponent<SnowBlock>().Resize(3);
+                            snowBlockGrabbed.GetComponent<SnowBlock>().Resize(-3);
+                            break;
+                        }
                     }
                 }
             }
