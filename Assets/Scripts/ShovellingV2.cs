@@ -27,6 +27,8 @@ public class ShovellingV2 : MonoBehaviour
     {
      //   shovelDownSound = GetComponent<AudioSource>();
         snowsHeld = new GameObject[capacity];
+        shovelSounds.clip = shovelDownSound;
+        shovelSounds2.clip = shovelUpSound;
     }
 
     // Update is called once per frame
@@ -35,9 +37,9 @@ public class ShovellingV2 : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             mousePressed = true;
-           //&& if the player is walking ---    
-            shovelSounds.clip = shovelDownSound;
-            shovelSounds.Play();
+
+           
+         
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -45,13 +47,21 @@ public class ShovellingV2 : MonoBehaviour
             mousePressed = false;
             mouseReleased = true;
             shovelSounds.Stop();
-            shovelSounds2.clip = shovelUpSound;
             shovelSounds2.Play();
         }
 
         if (mousePressed == true)
         {
             PickUp(snowsHeld, holdingPosition);
+
+            if ((Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) && shovelSounds.isPlaying == false)
+            {
+                shovelSounds.Play();
+            }
+            else if (shovelSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
+            {
+                shovelSounds.Pause();
+            }
         }
 
         if (mouseReleased == true)

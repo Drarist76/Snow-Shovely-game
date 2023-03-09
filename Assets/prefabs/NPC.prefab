@@ -112,6 +112,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a05ac74eeec84cbb07ce45997af73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  npcHit: {fileID: 0}
+  player: {fileID: 0}
 --- !u!54 &275127834475581666
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -140,3 +142,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b096863f7b27894081ae964b7028207, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hit: 0
+  angerTime: 0
+  snowPos: {fileID: 0}
+  enemyHit: {fileID: 8300000, guid: ea6132a9f508d454db8922cb8c22f80c, type: 3}
+  hitSounds: {fileID: 0}

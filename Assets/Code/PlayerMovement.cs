@@ -51,11 +51,10 @@ public class PlayerMovement : MonoBehaviour
             walkingSounds.clip = WalkingOnSnow;
             walkingSounds.Play();
         }
-           if (Input.GetKeyUp(KeyCode.W) && Input.GetKeyUp(KeyCode.A) && Input.GetKeyUp(KeyCode.S) && Input.GetKeyUp(KeyCode.D) && walkingSounds.isPlaying == true)
-         {
-              walkingSounds.clip = WalkingOnSnow;
-              walkingSounds.Pause(); 
-          }   
+        else if (walkingSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
+        {
+           walkingSounds.Pause();
+        }
 
     }
 }
