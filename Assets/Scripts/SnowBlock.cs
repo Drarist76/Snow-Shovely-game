@@ -7,7 +7,7 @@ public class SnowBlock : MonoBehaviour
     public float size = 0.125f;
     public float heightIncriment = 0.0625f;
 
-    [Range(1,5)]
+    [Range(1,10)]
     public int heightLevel = 1;
     public bool onGround = false;
 
