@@ -113,10 +113,11 @@ public class ShovellingV2 : MonoBehaviour
     void snowPickUp(GameObject assignedSnow, Transform assignedPos)
     {
         assignedSnow.GetComponent<Rigidbody>().useGravity = false;
-        assignedSnow.transform.position = assignedPos.position;
+        assignedSnow.transform.position = assignedPos.position + 
+            new Vector3(0,assignedSnow.GetComponent<SnowBlock>().heightLevel * assignedSnow.GetComponent<SnowBlock>().heightIncriment/2,0);
         assignedSnow.GetComponent<Rigidbody>().isKinematic = true;
         assignedSnow.GetComponent<BoxCollider>().enabled = false;
-        assignedSnow.GetComponent<SnowBlock>().onGround = false;
+        assignedSnow.GetComponent<SnowBlock>().onGround= false;
     }
 
     public void snowThrow(GameObject throwingSnow)
