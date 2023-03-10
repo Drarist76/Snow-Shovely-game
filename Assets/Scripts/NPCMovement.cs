@@ -32,7 +32,6 @@ public class NPCMovement : MonoBehaviour
         if (npcHit.hit == true)
         {
             Running();
-            speed = 1.5f * Time.deltaTime;
         }
         else
         {
@@ -82,6 +81,7 @@ public class NPCMovement : MonoBehaviour
 
         if (npcHit.angerTime <= 5)
         {
+            speed = 1.5f * Time.deltaTime;
             MoveToLocation();
         }
     }
@@ -90,7 +90,6 @@ public class NPCMovement : MonoBehaviour
     {
         if (Physics.SphereCast(new Vector3(transform.position.x, 9.1f, transform.position.z), 0.3f, location.localPosition, out hit, 2f, mask))
         {
-            Debug.Log("hit" + hit.collider.gameObject);
             FindLocation();
         }
     }

@@ -5,47 +5,51 @@ using System.Linq;
 
 public class Marker : MonoBehaviour
 {
-    [SerializeField] List<Collider> list = new List<Collider>();
-    [SerializeField] List<int> inside = new List<int>();
+    [SerializeField] List<GameObject> list = new List<GameObject>();
     [SerializeField] SnowBlock snow;
-    [SerializeField] int total;
+    public GameObject snowman;
+    public int total = 12;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        
+ 
     }
 
     // Update is called once per frame
     void Update()
     {
-        total = inside.Sum();
+        if (list.Count>=total)
+        {
+            CreateSnowman(list);
+        }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.CompareTag("Snow"))
         {
-            list.Add(other);
+            list.Add(other.gameObject);
             snow = other.gameObject.GetComponent<SnowBlock>();
-            inside.Add(snow.heightLevel);
-        }
+        } 
     }
 
     private void OnTriggerExit(Collider other)
     {
-        if (list.Contains(null)) {
-            list.RemoveAll(x => x == null);
+        list.RemoveAll(x => x == null);
+
+        list.Remove(other.gameObject);
+    }
+
+    void CreateSnowman(List<GameObject> snows)
+    {
+        foreach (var item in snows) 
+        {
+            Destroy(item);
         }
 
-        for (int i = 0; i <= list.Count; i++)
-            {
-                if (other == list[i]) {
-                    snow = list[i].gameObject.GetComponent<SnowBlock>();
-                    total = total - snow.heightLevel;
-                    list.Remove(list[i]);
-                }
-            }
+        snowman.SetActive(true);
+        this.enabled = false;
     }
 }
