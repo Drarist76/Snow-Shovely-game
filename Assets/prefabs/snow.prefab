@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 1703343365065414071}
   m_Layer: 7
   m_Name: snow
-  m_TagString: Snow Throw
+  m_TagString: Snow
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -127,7 +127,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8940176ad3d3bb44c897e4be63d31301, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxHeightLevel: 15
   size: 0.125
   heightIncriment: 0.0625
   heightLevel: 1
   onGround: 0
+  snowImpactPrefab: {fileID: 8733205559709107126, guid: a721bb566150e9a4abba04609f7aed6e, type: 3}
