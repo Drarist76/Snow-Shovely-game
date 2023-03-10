@@ -18,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     public LayerMask groundMask;
     Vector3 velocity;
     bool isGrounded;
+    public bool isOnSnow;
 
     void Start()
     {
@@ -43,13 +44,14 @@ public class PlayerMovement : MonoBehaviour
 
         controller.Move(move * speed * playerFeet.GetComponent<SlowPlayerDown>().slowMultipliyer * Time.deltaTime);
 
+
         velocity.y += gravity * Time.deltaTime;
         controller.Move(velocity * Time.deltaTime);
 
         //sounds
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) && walkingSounds.isPlaying == false)
         {
-            walkingSounds.clip = WalkingOnSnow;
+            walkingSounds.clip = WalkingOnGround;
             walkingSounds.Play();
         }
           else if (walkingSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
