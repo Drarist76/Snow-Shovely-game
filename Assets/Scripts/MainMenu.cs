@@ -8,9 +8,9 @@ public class MainMenu : MonoBehaviour
 {
     public void PlayGame()
     {
-        SceneManager.LoadScene(1);
-        SceneManager.UnloadScene("MainMenu");
-        Debug.Log("Scene");
+        SceneManager.LoadScene("GrayBox");
+        //SceneManager.UnloadScene("MainMenu");            ???idk
+        Debug.Log("Scene Change");
     }
 
     public void EndGame()
