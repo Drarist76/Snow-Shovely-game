@@ -39,7 +39,6 @@ public class SnowHit : MonoBehaviour
         if (collision.gameObject.CompareTag("Snow"))
         {
             snowPos = collision.gameObject.transform;
-            
         }
     }
 

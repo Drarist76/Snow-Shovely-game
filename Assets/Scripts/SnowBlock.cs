@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class SnowBlock : MonoBehaviour
 {
+    public float maxHeightLevel = 15f;
     public float size = 0.125f;
     public float heightIncriment = 0.0625f;
     public int heightLevel = 1;
@@ -46,7 +47,7 @@ public class SnowBlock : MonoBehaviour
         {
             if (collision.gameObject.CompareTag("Snow Throw"))
             {
-                if(heightLevel < 8)
+                if(heightLevel < maxHeightLevel)
                 {
                     Resize(collision.gameObject.GetComponent<SnowBlock>().heightLevel);
                     heightLevel += collision.gameObject.GetComponent<SnowBlock>().heightLevel;
