@@ -112,6 +112,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a05ac74eeec84cbb07ce45997af73, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  location: {fileID: 0}
   npcHit: {fileID: 275127834475581672}
   player: {fileID: 0}
   mask:
