@@ -48,7 +48,7 @@ public class SnowBlock : MonoBehaviour
             hasTouchedGround = true;
         }
 
-        if(this.gameObject.tag == "Snow")
+        else if(this.gameObject.tag == "Snow")
         {
             if (collision.gameObject.CompareTag("Snow Throw"))
             {
