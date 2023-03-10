@@ -9,6 +9,8 @@ public class SnowBlock : MonoBehaviour
     public float heightIncriment = 0.0625f;
     public int heightLevel = 1;
     public bool onGround = false;
+    public bool hasTouchedGround = false;
+    public GameObject snowImpactPrefab;
 
     private void OnValidate()
     {
@@ -36,11 +38,16 @@ public class SnowBlock : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
+            if(hasTouchedGround)
+            {
+                Instantiate(snowImpactPrefab, transform.position, Quaternion.Euler(-90f, 0, 0));
+            }
             transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
             transform.localRotation = Quaternion.identity;
             onGround= true;
             GetComponent<Rigidbody>().isKinematic= true;
             gameObject.tag = "Snow";
+            hasTouchedGround = true;
         }
 
         if(this.gameObject.tag == "Snow")

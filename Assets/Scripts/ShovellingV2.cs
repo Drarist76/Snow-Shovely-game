@@ -6,8 +6,12 @@ public class ShovellingV2 : MonoBehaviour
 {
     [Header("Shovel Settings")]
     public int capacity = 3;
-    [Range(3f,8f)]
+
+    [Range(1f,8f)]
     public float throwPower = 5f;
+
+    [Range(0.5f, 5f)]
+    public float yPower = 3f;
     private Vector3 offset;
 
     [Header("Arrays")]
@@ -52,7 +56,7 @@ public class ShovellingV2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.localRotation = Quaternion.Euler(cam.GetComponent<Transform>().localRotation.x * Mathf.Rad2Deg - 30f,0,0);
+        transform.localRotation = Quaternion.Euler(cam.GetComponent<Transform>().localRotation.x * Mathf.Rad2Deg - 10f,0,0);
 
         if (Input.GetMouseButtonDown(0))
         {
@@ -187,7 +191,7 @@ public class ShovellingV2 : MonoBehaviour
     {
         throwingSnow.GetComponent<Rigidbody>().useGravity = true;
         throwingSnow.GetComponent<Rigidbody>().isKinematic = false;
-        throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * throwPower;
+        throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * throwPower + new Vector3(0,yPower,0);
         throwingSnow.GetComponent<BoxCollider>().enabled = true;
         throwingSnow.tag = "Snow Throw";
     }
