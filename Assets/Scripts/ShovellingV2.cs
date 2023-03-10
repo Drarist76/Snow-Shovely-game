@@ -38,19 +38,20 @@ public class ShovellingV2 : MonoBehaviour
     public AudioClip shovelUpSound;
     public AudioSource shovelSounds;
     public AudioSource shovelSounds2;
-
+    public Animator shovelAnimator;
 
     // Start is called before the first frame update
     void Awake()
     {
 
-        snowsHeld= new GameObject[capacity];
+        snowsHeld = new GameObject[capacity];
         player = GetComponent<Transform>();
         offset = new Vector3(1f, 1f, 1f);
-     //   shovelDownSound = GetComponent<AudioSource>();
+        //   shovelDownSound = GetComponent<AudioSource>();
         snowsHeld = new GameObject[capacity];
         shovelSounds.clip = shovelDownSound;
         shovelSounds2.clip = shovelUpSound;
+        Animator shovelAnimatior = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -65,6 +66,8 @@ public class ShovellingV2 : MonoBehaviour
                 mousePressed = true;
                 canShovel= false;
                 StartCoroutine(ShovelCooldown());
+                shovelAnimator.SetBool("IsDigging", true);
+                
             }
         }
 
@@ -73,6 +76,7 @@ public class ShovellingV2 : MonoBehaviour
             mousePressed = false;
             mouseReleased = true;
             shovelSounds.Stop();
+            shovelAnimator.SetBool("IsDigging", false);
             for (int i = 0; i < capacity; i++)
             {
                 if(snowsHeld[i] != null)

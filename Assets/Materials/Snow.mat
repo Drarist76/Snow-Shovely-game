@@ -79,12 +79,12 @@ Material:
     - _Glossiness: 0
     - _GlossyReflections: 0
     - _HighIntensity: 3.09
-    - _LightScalar: 1
+    - _LightScalar: 0.8
     - _LowIntensity: 2.07
     - _Metallic: 0
     - _Mode: 0
     - _OcclusionStrength: 1
-    - _OutlineSize: 5
+    - _OutlineSize: 10.58
     - _Parallax: 0.02
     - _RampLevels: 50
     - _RimAlpha: 0.33
@@ -96,10 +96,10 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
-    - _Color: {r: 1, g: 1, b: 1, a: 1}
+    - _Color: {r: 0.59819627, g: 0.6698113, b: 0.66433376, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _FresnelColor: {r: 0.8887327, g: 1, b: 0.8455882, a: 1}
-    - _HighColor: {r: 1, g: 1, b: 1, a: 1}
+    - _HighColor: {r: 0.90488905, g: 0.94711757, b: 0.9528302, a: 1}
     - _LowColor: {r: 0.609, g: 0.766, b: 1, a: 1}
     - _OutlineColor: {r: 0.47209862, g: 0.680528, b: 0.9716981, a: 1}
     - _RimColor: {r: 1, g: 1, b: 1, a: 1}
