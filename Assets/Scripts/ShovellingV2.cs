@@ -183,7 +183,7 @@ public class ShovellingV2 : MonoBehaviour
         assignedSnow.transform.position = assignedPos.position + 
             new Vector3(0,assignedSnow.GetComponent<SnowBlock>().heightLevel * assignedSnow.GetComponent<SnowBlock>().heightIncriment/2,0);
         assignedSnow.GetComponent<Rigidbody>().isKinematic = true;
-        assignedSnow.GetComponent<BoxCollider>().enabled = false;
+        assignedSnow.GetComponent<SphereCollider>().enabled = false;
         assignedSnow.GetComponent<SnowBlock>().onGround= false;
     }
 
@@ -192,7 +192,7 @@ public class ShovellingV2 : MonoBehaviour
         throwingSnow.GetComponent<Rigidbody>().useGravity = true;
         throwingSnow.GetComponent<Rigidbody>().isKinematic = false;
         throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * throwPower + new Vector3(0,yPower,0);
-        throwingSnow.GetComponent<BoxCollider>().enabled = true;
+        throwingSnow.GetComponent<SphereCollider>().enabled = true;
         throwingSnow.tag = "Snow Throw";
     }
 

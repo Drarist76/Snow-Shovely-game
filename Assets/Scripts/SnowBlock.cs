@@ -14,25 +14,23 @@ public class SnowBlock : MonoBehaviour
 
     private void OnValidate()
     {
-        if(transform.parent != null)
-        {
-            float parentY = transform.parent.position.y;
-            transform.localScale = new Vector3(transform.localScale.x, size +
-                ((heightLevel - 1) * heightIncriment), transform.localScale.z);
-            transform.position = new Vector3(transform.position.x, parentY + (heightLevel - 1) * heightIncriment / 2, transform.position.z);
-        }
-        
+        /*
+                if(transform.parent != null)
+                {
+                    float parentY = transform.parent.position.y;
+                    transform.localScale = new Vector3(transform.localScale.x, size +
+                        ((heightLevel - 1) * heightIncriment), transform.localScale.z);
+                    transform.position = new Vector3(transform.position.x, parentY + (heightLevel - 1) * heightIncriment / 2, transform.position.z);
+
+                }*/
+
     }
     void Start()
     {
-       //transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
+
     }
 
     // Update is called once per frame
-    void Update()
-    {
-       
-    }
 
     private void OnCollisionEnter(Collision collision)
     {
