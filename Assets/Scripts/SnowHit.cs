@@ -32,13 +32,14 @@ public class SnowHit : MonoBehaviour
     {
         if (collision.gameObject.tag == "Snow Throw"){
             hit = true;
+            hitSounds.clip = enemyHit;
+            hitSounds.Play();
         }
 
         if (collision.gameObject.CompareTag("Snow"))
         {
             snowPos = collision.gameObject.transform;
-            hitSounds.clip = enemyHit;
-            hitSounds.Play();
+            
         }
     }
 
