@@ -5,7 +5,10 @@ using UnityEngine;
 public class NPCMovement : MonoBehaviour
 {
     bool doneMovement = true;
-    float maxRange = 3;
+    float point1 = -18;
+    float point2 = -4.5f;
+    float point3 = -17;
+    float point4 = -29;
     float speed;
     float timeCount = 3;
     Vector3 location;
@@ -18,7 +21,7 @@ public class NPCMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.4f * Time.deltaTime;
+        speed = 0.8f * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -45,7 +48,7 @@ public class NPCMovement : MonoBehaviour
 
     void FindLocation()
     {
-        location = new Vector3(Random.Range(-maxRange, maxRange), 0.0f, Random.Range(-maxRange, maxRange));
+        location = new Vector3(Random.Range(point1, point2), 9.3f, Random.Range(point4, point3));
         doneMovement = false;
     }
 
@@ -68,8 +71,12 @@ public class NPCMovement : MonoBehaviour
 
     void Running()
     {
-        location = transform.position - player.position;
-        location.y = 0.17f;
+        if (!Physics.Raycast(new Vector3(transform.position.x, 9.06f, transform.position.y), Vector3.forward, 2f, mask))
+        {
+            location = transform.position - player.position;
+            location.y = 0.17f;
+        }
+
         if (npcHit.angerTime <= 5)
         {
             MoveToLocation();
@@ -78,7 +85,7 @@ public class NPCMovement : MonoBehaviour
 
     void AvoidSnow()
     {
-        if(Physics.Raycast(new Vector3(transform.position.x, 0, transform.position.y), Vector3.forward, 2f, mask))
+        if(Physics.Raycast(new Vector3(transform.position.x, 9.06f, transform.position.y), Vector3.forward, 2f, mask))
         {
             FindLocation();
         }

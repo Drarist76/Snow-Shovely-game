@@ -374,8 +374,9 @@ MonoBehaviour:
   speed: 1.5
   gravity: -9.81
   WalkingOnSnow: {fileID: 8300000, guid: cb4bf35eeda4a4c4cb380071dd104514, type: 3}
-  WalkingOnGround: {fileID: 0}
-  walkingSounds: {fileID: 0}
+  WalkingOnGround: {fileID: 8300000, guid: 229945b3723e8d34fb16ada62344d3a2, type: 3}
+  playerFeet: {fileID: 6355413484973687096}
+  walkingSounds: {fileID: 5168323426464898115, guid: d4806e7bade17fc489909de87e0d3687, type: 3}
   groundCheck: {fileID: 1063261105177085792}
   groundDistance: 0.05
   groundMask:
@@ -493,6 +494,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   capacity: 6
   throwPower: 3.93
+  yPower: 3
   snowBlockGrabbed: {fileID: 0}
   snowsHeld: []
   holdingPosition:
@@ -508,9 +510,9 @@ MonoBehaviour:
   cam: {fileID: 1063261104893948815}
   snowPrefab: {fileID: 6775410969707116422, guid: e8a4e44f02ed96d4da041204e7d6b5d9, type: 3}
   shovelDownSound: {fileID: 8300000, guid: 5d0bc8bf7a4b83a40ae05d7029f3c49d, type: 3}
-  shovelUpSound: {fileID: 8300000, guid: 1f5fe85cace1f2244a881e9250af3de0, type: 3}
-  shovelSounds: {fileID: 0}
-  shovelSounds2: {fileID: 0}
+  shovelUpSound: {fileID: 8300000, guid: 2c34e778f5f0d354899991e26ef24c07, type: 3}
+  shovelSounds: {fileID: 5709185015236612927, guid: 06f15ae00cafb254e9be2186820f3e1d, type: 3}
+  shovelSounds2: {fileID: 7332289776393561366, guid: 23f0c41a09f1be64a88a511017b2d881, type: 3}
 --- !u!1 &1063261104276863245
 GameObject:
   m_ObjectHideFlags: 0
@@ -655,7 +657,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 0, g: 0, b: 0, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
