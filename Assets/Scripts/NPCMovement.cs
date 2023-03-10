@@ -75,9 +75,9 @@ public class NPCMovement : MonoBehaviour
 
     void Running()
     {
-
         location.position = transform.position - player.position;
         location.Translate(location.position.x, 9.3f, location.position.z);
+        location.position = Vector3.Normalize(location.position);
 
         if (npcHit.angerTime <= 5)
         {
