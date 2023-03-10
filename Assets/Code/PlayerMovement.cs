@@ -13,15 +13,17 @@ public class PlayerMovement : MonoBehaviour
     public SlowPlayerDown playerFeet;
 
     public AudioSource walkingSounds;
+   // public AudioSource walkingSounds2;
     public Transform groundCheck;
     public float groundDistance = 0.05f;
     public LayerMask groundMask;
     Vector3 velocity;
     bool isGrounded;
-    public bool isOnSnow;
+    private bool onSnowSound;
 
     void Start()
     {
+        walkingSounds.clip = WalkingOnGround;
         controller = GetComponent<CharacterController>();
     }
 
@@ -29,7 +31,36 @@ public class PlayerMovement : MonoBehaviour
     {
         isGrounded = Physics.CheckSphere(groundCheck.position, groundDistance, groundMask);
 
-       
+
+        if (SlowPlayerDown.isOnSnow == true) 
+        {
+                if(onSnowSound == false)
+                {
+                walkingSounds.Pause();
+                walkingSounds.clip = WalkingOnSnow;
+                Debug.Log("snow");
+                walkingSounds.Play();
+                onSnowSound = true;
+                }
+                
+            
+        }
+
+        if (SlowPlayerDown.isOnSnow == false)
+        {
+  
+                if(onSnowSound == true)
+                {
+                walkingSounds.Pause();
+                walkingSounds.clip = WalkingOnGround;
+                Debug.Log("ground");
+                walkingSounds.Play();
+                onSnowSound = false;
+                }
+
+            
+        }
+
 
         if (isGrounded && velocity.y < 0)
         {
@@ -51,10 +82,9 @@ public class PlayerMovement : MonoBehaviour
         //sounds
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.A)|| Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.D) && walkingSounds.isPlaying == false)
         {
-            walkingSounds.clip = WalkingOnGround;
             walkingSounds.Play();
         }
-          else if (walkingSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
+        else if (walkingSounds.isPlaying == true && (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.D)) == false)
             {
                 walkingSounds.Pause();
             } 

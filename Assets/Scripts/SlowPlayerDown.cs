@@ -4,10 +4,8 @@ using UnityEngine;
 
 public class SlowPlayerDown : MonoBehaviour
 {
-    public PlayerMovement player;
-
     public float slowMultipliyer = 1f;
-
+    public static bool isOnSnow;
     [Range(0.01f, 0.2f)]
     public float slownessIncrement = 0.05f;
 
@@ -18,7 +16,6 @@ public class SlowPlayerDown : MonoBehaviour
     private void Start()
     {
         feet = GetComponent<BoxCollider>();
-        player = player.GetComponent<PlayerMovement>();
     }
 
     private void OnTriggerStay(Collider other)
@@ -26,11 +23,11 @@ public class SlowPlayerDown : MonoBehaviour
         if(other.CompareTag("Snow"))
         {
             slowMultipliyer =  1 - (other.GetComponent<SnowBlock>().heightLevel * slownessIncrement);
-            if(slowMultipliyer < maxSlowness)
+            isOnSnow = true;
+            if (slowMultipliyer < maxSlowness)
             {
                 slowMultipliyer = maxSlowness;
-                player.isOnSnow = true;
-
+                
             }
         }
     }
@@ -40,7 +37,7 @@ public class SlowPlayerDown : MonoBehaviour
         if (other.CompareTag("Snow"))
         {
             slowMultipliyer = 1f;
-            player.isOnSnow = false;
+            isOnSnow = false;
         }
     }
 }
