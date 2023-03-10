@@ -36,10 +36,7 @@ public class SnowBlock : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Ground"))
         {
-            if(hasTouchedGround)
-            {
                 Instantiate(snowImpactPrefab, transform.position, Quaternion.Euler(-90f, 0, 0));
-            }
             transform.position = new Vector3(SnapBlocks(transform.position.x), transform.position.y, SnapBlocks(transform.position.z));
             transform.localRotation = Quaternion.identity;
             onGround= true;
@@ -54,6 +51,7 @@ public class SnowBlock : MonoBehaviour
             {
                 if(heightLevel < maxHeightLevel)
                 {
+                    Instantiate(snowImpactPrefab, transform.position, Quaternion.Euler(-90f, 0, 0));
                     Resize(collision.gameObject.GetComponent<SnowBlock>().heightLevel);
                     heightLevel += collision.gameObject.GetComponent<SnowBlock>().heightLevel;
                     //UpdateHeight();
