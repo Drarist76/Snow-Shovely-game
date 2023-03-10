@@ -23,6 +23,8 @@ public class ShovellingV2 : MonoBehaviour
     public Transform player;
     public Transform cam;
 
+    private bool canShovel = true;
+
     bool mousePressed, mouseReleased;
 
 
@@ -54,10 +56,12 @@ public class ShovellingV2 : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            mousePressed = true;
-
-           
-         
+            if(canShovel == true)
+            {
+                mousePressed = true;
+                canShovel= false;
+                StartCoroutine(ShovelCooldown());
+            }
         }
 
         if (Input.GetMouseButtonUp(0))
@@ -65,7 +69,14 @@ public class ShovellingV2 : MonoBehaviour
             mousePressed = false;
             mouseReleased = true;
             shovelSounds.Stop();
-            shovelSounds2.Play();
+            for (int i = 0; i < capacity; i++)
+            {
+                if(snowsHeld[i] != null)
+                {
+                    shovelSounds2.Play();
+                    break;
+                }
+            }
         }
 
         if (mousePressed == true)
@@ -179,5 +190,12 @@ public class ShovellingV2 : MonoBehaviour
         throwingSnow.GetComponent<Rigidbody>().velocity = transform.forward * throwPower;
         throwingSnow.GetComponent<BoxCollider>().enabled = true;
         throwingSnow.tag = "Snow Throw";
+    }
+
+    private IEnumerator ShovelCooldown()
+    {
+        yield return new WaitForSeconds(0.75f);
+        canShovel = true;
+        Debug.Log("test");
     }
 }
