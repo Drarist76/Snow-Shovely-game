@@ -9,7 +9,7 @@ public class NPCMovement : MonoBehaviour
     float point2 = -4.5f;
     float point3 = -17;
     float point4 = -29;
-    float speed;
+    public float speed;
     float timeCount = 3;
     public Transform location;
     public SnowHit npcHit;
@@ -22,7 +22,7 @@ public class NPCMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        speed = 0.8f * Time.deltaTime;
+        speed = 0.5f * Time.deltaTime;
     }
 
     // Update is called once per frame
@@ -31,11 +31,12 @@ public class NPCMovement : MonoBehaviour
         Debug.DrawRay(new Vector3(transform.position.x, 9.1f, transform.position.z), location.localPosition);
         if (npcHit.hit == true)
         {
+            speed = 1.2f*Time.deltaTime;
             Running();
         }
         else
         {
-            speed = 0.8f * Time.deltaTime;
+            speed = 0.5f * Time.deltaTime;
             if (doneMovement == false)
             {
                 MoveToLocation();
@@ -75,14 +76,15 @@ public class NPCMovement : MonoBehaviour
 
     void Running()
     {
-        location.position = transform.position - player.position;
-        location.Translate(location.position.x, 9.3f, location.position.z);
+        location.position = -transform.position + player.position;
+        location.Translate(location.position.x, 0f, location.position.z);
         location.position = Vector3.Normalize(location.position);
+        Debug.Log(location.position);
 
         if (npcHit.angerTime <= 5)
         {
-            speed = 1.5f * Time.deltaTime;
-            MoveToLocation();
+            Rotation();
+            transform.position = Vector3.MoveTowards(transform.position, transform.position-location.position, speed);
         }
     }
 
