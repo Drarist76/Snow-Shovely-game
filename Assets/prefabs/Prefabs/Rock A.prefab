@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 33092966369005018}
   - component: {fileID: 23445742227598232}
   m_Layer: 0
-  m_Name: LowPoly - Rock A
+  m_Name: Rock A
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
